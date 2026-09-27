@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Your Name] — Portfolio</title>
+  <meta name="description" content="[Your Name] — MIS student who designs and makes clothing. Portfolio for fashion business internships.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-home">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ======================================================================
+       SITE HEADER
+       Your name + nav. Keep it identical on every page so recruiters can
+       jump to Work, About, Resume, or Contact from anywhere.
+       ====================================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a class="site-header__name" href="index.html">
+          <span class="barcode barcode--mini barcode--v4" aria-hidden="true"><span class="barcode__bars"></span></span>
+          [Your Name]
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="#section-work">Work</a></li>
+            <li><a class="site-nav__link" href="#section-about">About</a></li>
+            <li><a class="site-nav__link" href="[resume.pdf]">Resume</a></li>
+            <li><a class="site-nav__link" href="#section-contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ====================================================================
+         HERO
+         Your name, a one-line positioning statement, and one strong image.
+         Recruiters decide in seconds whether to keep reading. The statement
+         should connect MIS + making clothes + the business side of fashion.
+         Layout mirrors a record sleeve: an ID panel with a "track list" of
+         case studies, a graphic mark, and a large barcode, framed in rules.
+         ==================================================================== -->
+    <section class="hero" id="section-hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+
+        <!-- ID panel: name, statement, case study "track list", actions -->
+        <div class="frame hero-grid__id">
+          <div class="frame__row">
+            <h1 class="hero__name" id="hero-title"><span>[First Name]</span> <span>[Last Name]</span></h1>
+          </div>
+          <div class="frame__row frame__row--split">
+            <p class="eyebrow">[Management Information Systems]</p>
+            <p class="eyebrow">[Class of 20XX · University Name]</p>
+          </div>
+          <div class="frame__row frame__row--grow">
+            <p class="hero__statement">[MIS student who designs and makes clothing, interested in how fashion products get built, sourced, and sold.]</p>
+          </div>
+          <div class="frame__row">
+            <ol class="tracklist" aria-label="Case studies">
+              <li><a href="denim.html">A. Make It</a></li>
+              <li><a href="brand.html">B. Brand It</a></li>
+              <li><a href="business.html">C. Run It</a></li>
+              <li><a href="#section-about">D. About</a></li>
+            </ol>
+          </div>
+          <div class="frame__row">
+            <div class="cluster">
+              <a class="button" href="#section-work">See my work</a>
+              <a class="button button--outline" href="[resume.pdf]">Download resume</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Graphic mark (decorative) -->
+        <div class="frame mark-cell hero-grid__mark" aria-hidden="true">
+          <div class="mark-rings"></div>
+        </div>
+
+        <!-- Signature barcode — reads like a garment tag -->
+        <div class="frame hero-grid__barcode">
+          <div class="frame__row frame__row--grow">
+            <div class="barcode barcode--lg barcode--v2" aria-hidden="true">
+              <div class="barcode__bars"></div>
+              <p class="barcode__code"><span>[0 00000]</span><span>[00000 0]</span></p>
+            </div>
+          </div>
+          <div class="frame__row frame__row--split">
+            <p class="eyebrow">Portfolio</p>
+            <p class="eyebrow">[Vol. 01 / 20XX]</p>
+          </div>
+        </div>
+
+        <!-- Hero image -->
+        <div class="frame hero-grid__image">
+          <div class="img-placeholder ratio-21x9" role="img" aria-label="[Alt text: you wearing or working on your pieces]">
+            IMAGE: You in your studio or wearing your pieces — wide editorial shot, high contrast (21:9)
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         WORK
+         Three case studies, each showing a different business skill:
+         product development (denim), brand/marketing (brand), and
+         merchandising/operations (business). Role tags help recruiters
+         map each project to the internship they're hiring for.
+         ==================================================================== -->
+    <section class="home-section" id="section-work" aria-labelledby="work-title">
+      <div class="container">
+        <header class="home-section__header stack stack--sm">
+          <p class="eyebrow">Selected work</p>
+          <h2 id="work-title">Case studies</h2>
+        </header>
+
+        <div class="grid grid--3 case-grid">
+          <!-- Case card 1: Denim -->
+          <article class="case-card" id="card-denim">
+            <a class="case-card__media" href="denim.html" aria-label="Make It: Built to Fit — read case study">
+              <div class="img-placeholder ratio-4x5" role="img" aria-label="[Alt text: close-up of your latest pair of jeans]">
+                IMAGE: Latest pair of jeans, detail or full-length shot (4:5)
+              </div>
+            </a>
+            <div class="case-card__body">
+              <p class="eyebrow">Case study 01</p>
+              <h3 class="case-card__title"><a href="denim.html">Make It: Built to Fit</a></h3>
+              <p class="case-card__subtitle">Iterating on a pair of jeans, one prototype at a time</p>
+              <ul class="cluster tag-list" aria-label="Relevant roles">
+                <li class="tag">Product Development</li>
+                <li class="tag">Sourcing</li>
+                <li class="tag">Costing</li>
+              </ul>
+              <a class="case-card__link" href="denim.html">Read case study →</a>
+            </div>
+            <div class="case-card__tag">
+              <div class="barcode barcode--sm barcode--v1" aria-hidden="true">
+                <div class="barcode__bars"></div>
+                <p class="barcode__code"><span>SKU CS-01</span><span>[20XX]</span></p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Case card 2: Brand -->
+          <article class="case-card" id="card-brand">
+            <a class="case-card__media" href="brand.html" aria-label="Brand It: Building [Brand Name] — read case study">
+              <div class="img-placeholder ratio-4x5" role="img" aria-label="[Alt text: lookbook image of your collection]">
+                IMAGE: Lookbook shot of the collection (4:5)
+              </div>
+            </a>
+            <div class="case-card__body">
+              <p class="eyebrow">Case study 02</p>
+              <h3 class="case-card__title"><a href="brand.html">Brand It: Building [Brand Name]</a></h3>
+              <p class="case-card__subtitle">Turning a collection of pieces into a brand</p>
+              <ul class="cluster tag-list" aria-label="Relevant roles">
+                <li class="tag">Brand</li>
+                <li class="tag">Marketing</li>
+                <li class="tag">Merchandising</li>
+              </ul>
+              <a class="case-card__link" href="brand.html">Read case study →</a>
+            </div>
+            <div class="case-card__tag">
+              <div class="barcode barcode--sm barcode--v3" aria-hidden="true">
+                <div class="barcode__bars"></div>
+                <p class="barcode__code"><span>SKU CS-02</span><span>[20XX]</span></p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Case card 3: Business -->
+          <article class="case-card" id="card-business">
+            <a class="case-card__media" href="business.html" aria-label="Run It: Behind the Seams — read case study">
+              <div class="img-placeholder ratio-4x5" role="img" aria-label="[Alt text: screenshot of your line plan spreadsheet]">
+                IMAGE: Line plan / tracker screenshot, cropped to key area (4:5)
+              </div>
+            </a>
+            <div class="case-card__body">
+              <p class="eyebrow">Case study 03</p>
+              <h3 class="case-card__title"><a href="business.html">Run It: Behind the Seams</a></h3>
+              <p class="case-card__subtitle">Planning, pricing, and managing a product line</p>
+              <ul class="cluster tag-list" aria-label="Relevant roles">
+                <li class="tag">Merchandising</li>
+                <li class="tag">Operations</li>
+                <li class="tag">Vendor Management</li>
+              </ul>
+              <a class="case-card__link" href="business.html">Read case study →</a>
+            </div>
+            <div class="case-card__tag">
+              <div class="barcode barcode--sm barcode--v4" aria-hidden="true">
+                <div class="barcode__bars"></div>
+                <p class="barcode__code"><span>SKU CS-03</span><span>[20XX]</span></p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ABOUT
+         A short, human bio: how you started sewing, why MIS, and what kind
+         of role you want. Skills should mix technical (Excel, SQL, Figma)
+         and product (pattern making, fit, sourcing) so recruiters see both.
+         ==================================================================== -->
+    <section class="home-section" id="section-about" aria-labelledby="about-title">
+      <div class="container split">
+        <div class="split__media">
+          <div class="img-placeholder ratio-4x5" role="img" aria-label="[Alt text: portrait of you]">
+            IMAGE: Portrait of you, natural light, at your sewing table (4:5)
+          </div>
+        </div>
+        <div class="split__text stack stack--lg">
+          <header class="stack stack--sm">
+            <p class="eyebrow">About</p>
+            <h2 id="about-title">[A short headline about you]</h2>
+          </header>
+          <div class="stack">
+            <p>[Paragraph 1: How you started designing and sewing your own clothes, and what you make — jeans, jackets, caps, hoodies.]</p>
+            <p>[Paragraph 2: Why you study MIS and how it connects to fashion — data, systems, planning, and how products move from idea to customer.]</p>
+            <p>[Paragraph 3: The internship you're looking for (merchandising, product development, sourcing, marketing, brand, or operations) and your goal of starting your own brand.]</p>
+          </div>
+          <div class="stack stack--sm">
+            <h3>Skills</h3>
+            <ul class="skills-list" aria-label="Skills">
+              <li class="tag">[Excel / Google Sheets]</li>
+              <li class="tag">[SQL]</li>
+              <li class="tag">[Data analysis tool]</li>
+              <li class="tag">[Figma / Adobe]</li>
+              <li class="tag">[Pattern making]</li>
+              <li class="tag">[Garment construction]</li>
+              <li class="tag">[Costing &amp; pricing]</li>
+              <li class="tag">[Sourcing]</li>
+              <li class="tag">[Skill]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CONTACT
+         Make it effortless to reach you. Email first (recruiters' default),
+         then LinkedIn, then Instagram (shows the work in progress).
+         ==================================================================== -->
+    <section class="home-section" id="section-contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="frame contact-panel">
+          <header class="stack text-measure">
+            <p class="eyebrow">Contact</p>
+            <h2 id="contact-title">[Let's talk — short invitation line]</h2>
+            <p class="text-muted">[One sentence on what you're looking for, e.g., "Seeking a Summer 20XX internship in merchandising, product development, or sourcing."]</p>
+          </header>
+          <ul class="contact-list">
+            <li><span class="contact-list__label">Email</span> <a href="mailto:[you@email.com]">[you@email.com]</a></li>
+            <li><span class="contact-list__label">LinkedIn</span> <a href="[https://linkedin.com/in/your-handle]">[linkedin.com/in/your-handle]</a></li>
+            <li><span class="contact-list__label">Instagram</span> <a href="[https://instagram.com/your-handle]">[@your-handle]</a></li>
+            <li><span class="contact-list__label">Resume</span> <a href="[resume.pdf]" download>[Download resume (PDF)]</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       FOOTER
+       ====================================================================== -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__meta">
+          <p>© [Year] [Your Name]</p>
+          <ul class="site-footer__links">
+            <li><a href="mailto:[you@email.com]">Email</a></li>
+            <li><a href="[https://linkedin.com/in/your-handle]">LinkedIn</a></li>
+            <li><a href="[https://instagram.com/your-handle]">Instagram</a></li>
+          </ul>
+        </div>
+        <div class="barcode barcode--v1" aria-hidden="true">
+          <div class="barcode__bars"></div>
+          <p class="barcode__code"><span>[Your Name]</span><span>[20XX]</span></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

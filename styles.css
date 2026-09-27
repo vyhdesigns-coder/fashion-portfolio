@@ -1,0 +1,937 @@
+/* ==========================================================================
+   Portfolio Template — Shared Stylesheet
+   Look: screenprint on charcoal. Cream "ink", thin framed panels,
+   grain texture, halftone image placeholders, barcode as signature mark.
+   --------------------------------------------------------------------------
+   1. Design tokens (edit these first)
+   2. Base / reset + grain texture
+   3. Layout primitives (container, stack, grid, split, frame)
+   4. Signature graphics (barcode, concentric rings, starburst)
+   5. Site header, nav, footer
+   6. Home page components (hero, case cards, about, contact)
+   7. Case study components (title block, quick facts, sections, tables,
+      callouts, theme blocks, swatches, timeline, pager)
+   8. Placeholders (image boxes)
+   9. Responsive
+   10. Utility modifiers
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. DESIGN TOKENS
+   ========================================================================== */
+:root {
+  color-scheme: dark;
+
+  /* Color — charcoal paper, cream ink */
+  --color-bg: #1d1d1b;               /* charcoal, not black */
+  --color-surface: #252523;          /* raised panels, table headers */
+  --color-surface-strong: #2c2c29;   /* image placeholders */
+  --color-line: #cfc8b8;             /* frame lines (cream, like the cover rules) */
+  --color-border: #4a4843;           /* quiet dividers inside frames */
+  --color-text: #ece6d8;             /* cream — ~14:1 on bg */
+  --color-text-muted: #a9a397;       /* ~6.8:1 on bg */
+  --color-accent: #ece6d8;           /* buttons, links */
+  --color-accent-contrast: #1d1d1b;
+  --color-placeholder-text: #c9c2b2;
+
+  /* Texture */
+  --grain-opacity: 0.35;             /* global screenprint grain; 0 turns it off */
+  --halftone-dot: rgba(236, 230, 216, 0.16);
+  --halftone-size: 5px;
+
+  /* Font families (system placeholders — swap for final fonts) */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-body: var(--font-sans);
+  --font-heading: var(--font-sans);
+  --font-label: var(--font-mono);    /* eyebrows, tags, codes */
+
+  /* Type scale (1.25 ratio) */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.25rem;    /* 20px */
+  --text-xl: 1.5625rem;  /* 25px */
+  --text-2xl: 1.9375rem; /* 31px */
+  --text-3xl: 2.4375rem; /* 39px */
+  --text-4xl: 3.0625rem; /* 49px */
+  --text-5xl: 4rem;      /* 64px — hero name */
+
+  --leading-tight: 1.1;
+  --leading-normal: 1.6;
+  --tracking-caps: 0.08em;           /* uppercase labels */
+  --tracking-heading: 0.01em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  /* Spacing scale (4px base) */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.5rem;   /* 24px */
+  --space-6: 2rem;     /* 32px */
+  --space-7: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+  --space-9: 6rem;     /* 96px */
+
+  /* Layout */
+  --max-width: 76rem;          /* 1216px */
+  --max-width-text: 42rem;     /* 672px */
+  --gutter: var(--space-5);
+  --frame-gap: var(--space-3); /* gap between framed panels */
+  --frame-pad: var(--space-5); /* padding inside framed panels */
+
+  /* Shape — screenprint is sharp-edged */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-pill: 0;
+
+  --border-width: 1px;
+  --line-width: 1.5px;         /* frame lines */
+}
+
+
+/* ==========================================================================
+   2. BASE / RESET + GRAIN
+   ========================================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  position: relative;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+/* Screenprint grain over the whole page (inline SVG noise, no image file) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.93 0 0 0 0 0.9 0 0 0 0 0.85 3.2 0 0 0 -1.75'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-heading);
+}
+h1, h2 { text-transform: uppercase; }
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-lg); }
+h4 { font-size: var(--text-base); }
+
+p, ul, ol, figure, blockquote, table { margin: 0; }
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: var(--color-accent); text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
+
+::selection { background: var(--color-text); color: var(--color-bg); }
+
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  z-index: 101;
+}
+.skip-link:focus { top: var(--space-4); }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   3. LAYOUT PRIMITIVES
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.stack { display: flex; flex-direction: column; gap: var(--space-4); }
+.stack--sm { gap: var(--space-2); }
+.stack--lg { gap: var(--space-6); }
+
+.cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.tag-list { list-style: none; padding: 0; }
+
+.grid { display: grid; gap: var(--space-5); }
+.grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-7);
+  align-items: center;
+}
+.split--reverse .split__media { order: -1; }
+
+/* Frame — the thin-ruled box from the album cover. Core building block.
+   Stack .frame__row children inside; each row is divided by a rule. */
+.frame {
+  display: flex;
+  flex-direction: column;
+  border: var(--line-width) solid var(--color-line);
+}
+.frame__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--frame-pad);
+}
+.frame__row + .frame__row { border-top: var(--line-width) solid var(--color-line); }
+.frame__row--split { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--space-2) var(--space-4); }
+.frame__row--grow { flex: 1; }
+
+.text-measure { max-width: var(--max-width-text); }
+.text-muted { color: var(--color-text-muted); }
+
+.eyebrow {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: var(--line-width) solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.button:hover { background: transparent; color: var(--color-accent); }
+.button--outline { background: transparent; color: var(--color-accent); }
+.button--outline:hover { background: var(--color-accent); color: var(--color-accent-contrast); }
+
+.tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+
+/* ==========================================================================
+   4. SIGNATURE GRAPHICS
+   ========================================================================== */
+
+/* --- Barcode -------------------------------------------------------------
+   Decorative barcode drawn with a hard-stop gradient (no image file).
+   Markup:
+     <div class="barcode barcode--v1" aria-hidden="true">
+       <div class="barcode__bars"></div>
+       <p class="barcode__code"><span>[SKU]</span><span>[CODE]</span></p>
+     </div>
+   Patterns: --v1 … --v4. Sizes: --mini (logo), --sm, default, --lg.
+   Ink color follows --barcode-ink.
+   ------------------------------------------------------------------------- */
+.barcode {
+  --barcode-ink: var(--color-text);
+  --barcode-height: 4.5rem;
+  --barcode-1: linear-gradient(90deg, var(--barcode-ink) 0.00% 1.05%, transparent 1.05% 2.11%, var(--barcode-ink) 2.11% 3.16%, transparent 3.16% 4.21%, var(--barcode-ink) 4.21% 5.26%, transparent 5.26% 6.32%, var(--barcode-ink) 6.32% 8.42%, transparent 8.42% 9.47%, var(--barcode-ink) 9.47% 10.53%, transparent 10.53% 13.68%, var(--barcode-ink) 13.68% 14.74%, transparent 14.74% 16.84%, var(--barcode-ink) 16.84% 18.95%, transparent 18.95% 20.00%, var(--barcode-ink) 20.00% 22.11%, transparent 22.11% 23.16%, var(--barcode-ink) 23.16% 24.21%, transparent 24.21% 25.26%, var(--barcode-ink) 25.26% 27.37%, transparent 27.37% 29.47%, var(--barcode-ink) 29.47% 30.53%, transparent 30.53% 31.58%, var(--barcode-ink) 31.58% 32.63%, transparent 32.63% 35.79%, var(--barcode-ink) 35.79% 37.89%, transparent 37.89% 38.95%, var(--barcode-ink) 38.95% 43.16%, transparent 43.16% 46.32%, var(--barcode-ink) 46.32% 47.37%, transparent 47.37% 48.42%, var(--barcode-ink) 48.42% 51.58%, transparent 51.58% 54.74%, var(--barcode-ink) 54.74% 55.79%, transparent 55.79% 58.95%, var(--barcode-ink) 58.95% 61.05%, transparent 61.05% 63.16%, var(--barcode-ink) 63.16% 64.21%, transparent 64.21% 65.26%, var(--barcode-ink) 65.26% 66.32%, transparent 66.32% 69.47%, var(--barcode-ink) 69.47% 73.68%, transparent 73.68% 74.74%, var(--barcode-ink) 74.74% 75.79%, transparent 75.79% 77.89%, var(--barcode-ink) 77.89% 78.95%, transparent 78.95% 82.11%, var(--barcode-ink) 82.11% 83.16%, transparent 83.16% 86.32%, var(--barcode-ink) 86.32% 87.37%, transparent 87.37% 90.53%, var(--barcode-ink) 90.53% 94.74%, transparent 94.74% 95.79%, var(--barcode-ink) 95.79% 96.84%, transparent 96.84% 97.89%, var(--barcode-ink) 97.89% 98.95%, transparent 98.95% 100.00%);
+  --barcode-2: linear-gradient(90deg, var(--barcode-ink) 0.00% 1.05%, transparent 1.05% 2.11%, var(--barcode-ink) 2.11% 3.16%, transparent 3.16% 4.21%, var(--barcode-ink) 4.21% 5.26%, transparent 5.26% 7.37%, var(--barcode-ink) 7.37% 10.53%, transparent 10.53% 12.63%, var(--barcode-ink) 12.63% 15.79%, transparent 15.79% 17.89%, var(--barcode-ink) 17.89% 20.00%, transparent 20.00% 21.05%, var(--barcode-ink) 21.05% 25.26%, transparent 25.26% 27.37%, var(--barcode-ink) 27.37% 31.58%, transparent 31.58% 34.74%, var(--barcode-ink) 34.74% 35.79%, transparent 35.79% 38.95%, var(--barcode-ink) 38.95% 41.05%, transparent 41.05% 42.11%, var(--barcode-ink) 42.11% 46.32%, transparent 46.32% 47.37%, var(--barcode-ink) 47.37% 48.42%, transparent 48.42% 50.53%, var(--barcode-ink) 50.53% 52.63%, transparent 52.63% 54.74%, var(--barcode-ink) 54.74% 55.79%, transparent 55.79% 56.84%, var(--barcode-ink) 56.84% 61.05%, transparent 61.05% 62.11%, var(--barcode-ink) 62.11% 63.16%, transparent 63.16% 64.21%, var(--barcode-ink) 64.21% 66.32%, transparent 66.32% 68.42%, var(--barcode-ink) 68.42% 70.53%, transparent 70.53% 72.63%, var(--barcode-ink) 72.63% 73.68%, transparent 73.68% 75.79%, var(--barcode-ink) 75.79% 77.89%, transparent 77.89% 80.00%, var(--barcode-ink) 80.00% 83.16%, transparent 83.16% 84.21%, var(--barcode-ink) 84.21% 87.37%, transparent 87.37% 89.47%, var(--barcode-ink) 89.47% 90.53%, transparent 90.53% 91.58%, var(--barcode-ink) 91.58% 94.74%, transparent 94.74% 95.79%, var(--barcode-ink) 95.79% 96.84%, transparent 96.84% 97.89%, var(--barcode-ink) 97.89% 98.95%, transparent 98.95% 100.00%);
+  --barcode-3: linear-gradient(90deg, var(--barcode-ink) 0.00% 1.09%, transparent 1.09% 2.17%, var(--barcode-ink) 2.17% 3.26%, transparent 3.26% 4.35%, var(--barcode-ink) 4.35% 7.61%, transparent 7.61% 8.70%, var(--barcode-ink) 8.70% 9.78%, transparent 9.78% 11.96%, var(--barcode-ink) 11.96% 13.04%, transparent 13.04% 14.13%, var(--barcode-ink) 14.13% 15.22%, transparent 15.22% 16.30%, var(--barcode-ink) 16.30% 19.57%, transparent 19.57% 22.83%, var(--barcode-ink) 22.83% 23.91%, transparent 23.91% 27.17%, var(--barcode-ink) 27.17% 29.35%, transparent 29.35% 30.43%, var(--barcode-ink) 30.43% 31.52%, transparent 31.52% 32.61%, var(--barcode-ink) 32.61% 33.70%, transparent 33.70% 34.78%, var(--barcode-ink) 34.78% 36.96%, transparent 36.96% 40.22%, var(--barcode-ink) 40.22% 41.30%, transparent 41.30% 44.57%, var(--barcode-ink) 44.57% 45.65%, transparent 45.65% 48.91%, var(--barcode-ink) 48.91% 51.09%, transparent 51.09% 52.17%, var(--barcode-ink) 52.17% 54.35%, transparent 54.35% 57.61%, var(--barcode-ink) 57.61% 58.70%, transparent 58.70% 59.78%, var(--barcode-ink) 59.78% 64.13%, transparent 64.13% 65.22%, var(--barcode-ink) 65.22% 68.48%, transparent 68.48% 70.65%, var(--barcode-ink) 70.65% 71.74%, transparent 71.74% 73.91%, var(--barcode-ink) 73.91% 75.00%, transparent 75.00% 76.09%, var(--barcode-ink) 76.09% 80.43%, transparent 80.43% 82.61%, var(--barcode-ink) 82.61% 83.70%, transparent 83.70% 84.78%, var(--barcode-ink) 84.78% 86.96%, transparent 86.96% 88.04%, var(--barcode-ink) 88.04% 89.13%, transparent 89.13% 91.30%, var(--barcode-ink) 91.30% 93.48%, transparent 93.48% 95.65%, var(--barcode-ink) 95.65% 96.74%, transparent 96.74% 97.83%, var(--barcode-ink) 97.83% 98.91%, transparent 98.91% 100.00%);
+  --barcode-4: linear-gradient(90deg, var(--barcode-ink) 0.00% 1.05%, transparent 1.05% 2.11%, var(--barcode-ink) 2.11% 3.16%, transparent 3.16% 4.21%, var(--barcode-ink) 4.21% 6.32%, transparent 6.32% 8.42%, var(--barcode-ink) 8.42% 9.47%, transparent 9.47% 12.63%, var(--barcode-ink) 12.63% 13.68%, transparent 13.68% 14.74%, var(--barcode-ink) 14.74% 15.79%, transparent 15.79% 16.84%, var(--barcode-ink) 16.84% 21.05%, transparent 21.05% 22.11%, var(--barcode-ink) 22.11% 23.16%, transparent 23.16% 25.26%, var(--barcode-ink) 25.26% 27.37%, transparent 27.37% 30.53%, var(--barcode-ink) 30.53% 31.58%, transparent 31.58% 34.74%, var(--barcode-ink) 34.74% 36.84%, transparent 36.84% 37.89%, var(--barcode-ink) 37.89% 40.00%, transparent 40.00% 43.16%, var(--barcode-ink) 43.16% 45.26%, transparent 45.26% 46.32%, var(--barcode-ink) 46.32% 50.53%, transparent 50.53% 52.63%, var(--barcode-ink) 52.63% 56.84%, transparent 56.84% 58.95%, var(--barcode-ink) 58.95% 63.16%, transparent 63.16% 64.21%, var(--barcode-ink) 64.21% 65.26%, transparent 65.26% 67.37%, var(--barcode-ink) 67.37% 70.53%, transparent 70.53% 71.58%, var(--barcode-ink) 71.58% 75.79%, transparent 75.79% 78.95%, var(--barcode-ink) 78.95% 80.00%, transparent 80.00% 81.05%, var(--barcode-ink) 81.05% 84.21%, transparent 84.21% 87.37%, var(--barcode-ink) 87.37% 90.53%, transparent 90.53% 91.58%, var(--barcode-ink) 91.58% 93.68%, transparent 93.68% 95.79%, var(--barcode-ink) 95.79% 96.84%, transparent 96.84% 97.89%, var(--barcode-ink) 97.89% 98.95%, transparent 98.95% 100.00%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+.barcode__bars {
+  height: var(--barcode-height);
+  background-image: var(--barcode-1);
+}
+.barcode--v2 .barcode__bars { background-image: var(--barcode-2); }
+.barcode--v3 .barcode__bars { background-image: var(--barcode-3); }
+.barcode--v4 .barcode__bars { background-image: var(--barcode-4); }
+.barcode__code {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--barcode-ink);
+}
+.barcode--sm { --barcode-height: 2.25rem; }
+.barcode--lg { --barcode-height: 7rem; }
+.barcode--mini { --barcode-height: 1.5rem; width: 5rem; flex: none; }
+.barcode--mini .barcode__code { display: none; }
+
+/* --- Concentric rings (inspiration 1) --- */
+.mark-rings {
+  aspect-ratio: 1 / 1;
+  background: repeating-radial-gradient(circle at center,
+    var(--color-text) 0 6px,
+    transparent 6px 13px);
+  -webkit-mask: radial-gradient(circle closest-side, #000 99%, transparent 100%);
+          mask: radial-gradient(circle closest-side, #000 99%, transparent 100%);
+}
+
+/* --- Starburst (album cover) --- */
+.mark-burst {
+  aspect-ratio: 1 / 1;
+  background: repeating-conic-gradient(from -0.4deg,
+    var(--color-text) 0deg 0.8deg,
+    transparent 0.8deg 30deg);
+  -webkit-mask: radial-gradient(circle at center, #000 0 46%, transparent 46.5%);
+          mask: radial-gradient(circle at center, #000 0 46%, transparent 46.5%);
+}
+
+/* Cell that centers a mark inside a frame */
+.mark-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--frame-pad);
+}
+.mark-cell > * { width: 100%; max-width: 15rem; }
+
+
+/* ==========================================================================
+   5. SITE HEADER, NAV, FOOTER
+   ========================================================================== */
+.site-header { padding-top: var(--space-4); }
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: var(--line-width) solid var(--color-line);
+}
+.site-header__name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-heading);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  list-style: none;
+  padding: 0;
+}
+.site-nav__link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.site-nav__link:hover { text-decoration: underline; }
+
+.site-footer {
+  margin-top: var(--space-9);
+  padding-bottom: var(--space-5);
+  font-size: var(--text-sm);
+}
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
+  align-items: end;
+  gap: var(--space-5);
+  padding: var(--frame-pad);
+  border: var(--line-width) solid var(--color-line);
+}
+.site-footer__meta { display: flex; flex-direction: column; gap: var(--space-3); color: var(--color-text-muted); }
+.site-footer__links { display: flex; flex-wrap: wrap; gap: var(--space-5); list-style: none; padding: 0; }
+.site-footer a {
+  color: var(--color-text);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   6. HOME PAGE COMPONENTS
+   ========================================================================== */
+.home-section { padding-block: var(--space-9) 0; }
+.home-section__header { margin-bottom: var(--space-6); }
+
+/* Hero — cover-style grid of framed panels */
+.hero { padding-top: var(--frame-gap); }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--frame-gap);
+}
+.hero-grid__id { grid-row: span 2; }
+.hero-grid__image { grid-column: 1 / -1; padding: var(--space-3); }
+.hero__name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 var(--space-5);
+  font-size: var(--text-5xl);
+}
+.hero__statement { font-size: var(--text-xl); line-height: 1.35; max-width: 34rem; }
+
+/* Track-list index of case studies (A. / B. / C.), like the cover */
+.tracklist {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-5);
+  list-style: none;
+  padding: 0;
+}
+.tracklist a {
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.tracklist a:hover { text-decoration: underline; }
+
+/* Case study cards — each reads like a hang tag, barcode at the bottom */
+.case-card {
+  display: flex;
+  flex-direction: column;
+  border: var(--line-width) solid var(--color-line);
+}
+.case-card__media { display: block; text-decoration: none; padding: var(--space-3); border-bottom: var(--line-width) solid var(--color-line); }
+.case-card__body { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--frame-pad); flex: 1; }
+.case-card__title { font-size: var(--text-xl); text-transform: uppercase; }
+.case-card__title a { color: inherit; text-decoration: none; }
+.case-card__title a:hover { text-decoration: underline; }
+.case-card__subtitle { color: var(--color-text-muted); }
+.case-card__link {
+  margin-top: auto;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.case-card__tag { padding: var(--space-4) var(--frame-pad); border-top: var(--line-width) solid var(--color-line); }
+
+/* About */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+}
+
+/* Contact — framed panel */
+.contact-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-7);
+  padding: var(--space-7) var(--frame-pad);
+}
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+}
+.contact-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  padding-block: var(--space-3);
+  border-top: var(--border-width) solid var(--color-line);
+}
+.contact-list li:last-child { border-bottom: var(--border-width) solid var(--color-line); }
+.contact-list__label {
+  min-width: 7rem;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  line-height: 2;
+}
+
+
+/* ==========================================================================
+   7. CASE STUDY COMPONENTS
+   ========================================================================== */
+.back-link {
+  display: inline-block;
+  padding-block: var(--space-5) var(--space-4);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+/* Title block — framed grid: title | starburst / barcode spec tag */
+.cs-title {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--frame-gap);
+  margin-bottom: var(--space-7);
+}
+.cs-title__main { grid-row: span 2; }
+.cs-title__main .frame__row--grow { justify-content: flex-end; }
+.cs-title__subtitle { font-size: var(--text-xl); color: var(--color-text-muted); line-height: 1.35; }
+.spec-list { display: flex; flex-direction: column; gap: var(--space-1); margin: 0; }
+.spec-list div { display: flex; justify-content: space-between; gap: var(--space-4); }
+.spec-list dt,
+.spec-list dd {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.spec-list dt { color: var(--color-text-muted); }
+
+/* Quick facts row — framed cells */
+.quick-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border: var(--line-width) solid var(--color-line);
+}
+.quick-facts__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+}
+.quick-facts__item + .quick-facts__item { border-left: var(--line-width) solid var(--color-line); }
+.quick-facts__label {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.quick-facts__value { font-weight: var(--weight-medium); }
+.quick-facts dd { margin: 0; }
+
+/* Section shell */
+.cs-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding-top: var(--space-9);
+}
+.cs-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: var(--line-width) solid var(--color-line);
+}
+.cs-section__header > .text-muted { max-width: var(--max-width-text); }
+.cs-section__number {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  color: var(--color-text-muted);
+}
+.cs-section__body { display: flex; flex-direction: column; gap: var(--space-4); max-width: var(--max-width-text); }
+.cs-section__body ul,
+.cs-section__body ol { padding-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+
+.subheading { font-size: var(--text-lg); }
+
+/* Full-width image block */
+.full-image { display: flex; flex-direction: column; gap: var(--space-2); }
+figcaption {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+/* Tables — ruled like a spec sheet */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: var(--line-width) solid var(--color-line);
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.data-table caption {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  border-bottom: var(--line-width) solid var(--color-line);
+}
+.data-table th,
+.data-table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: var(--border-width) solid var(--color-border);
+  white-space: nowrap;
+}
+.data-table td.wrap { white-space: normal; min-width: 12rem; }
+.data-table thead th {
+  background: var(--color-surface);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-bottom: var(--line-width) solid var(--color-line);
+}
+.data-table tbody th { font-weight: var(--weight-medium); }
+.data-table tbody tr:last-child td,
+.data-table tbody tr:last-child th { border-bottom: 0; }
+.data-table tfoot td,
+.data-table tfoot th {
+  background: var(--color-surface);
+  font-weight: var(--weight-bold);
+  border-bottom: 0;
+  border-top: var(--line-width) solid var(--color-line);
+}
+
+/* Quote callouts */
+.quote-callout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: var(--border-width) solid var(--color-border);
+  border-left: 4px solid var(--color-line);
+  background: var(--color-surface);
+}
+.quote-callout__text { font-size: var(--text-lg); font-family: var(--font-serif); line-height: 1.4; }
+.quote-callout__cite {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  font-style: normal;
+}
+
+/* Metric / insight callouts */
+.metric-callout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border: var(--line-width) solid var(--color-line);
+}
+.metric-callout__value { font-size: var(--text-4xl); font-weight: var(--weight-medium); line-height: 1; letter-spacing: -0.01em; }
+.metric-callout__label {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.metric-callout__note { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+.insight-callout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+}
+.insight-callout__title { font-size: var(--text-lg); }
+
+/* Note / aside box */
+.note-box {
+  padding: var(--space-4) var(--space-5);
+  border: var(--border-width) dashed var(--color-text-muted);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* Iteration theme blocks (denim) */
+.theme-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  border: var(--line-width) solid var(--color-line);
+}
+.theme-block > h3 { text-transform: uppercase; letter-spacing: var(--tracking-caps); font-size: var(--text-base); }
+.before-after { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.before-after__item { display: flex; flex-direction: column; gap: var(--space-2); }
+.change-notes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--color-border);
+}
+.change-notes__item { display: flex; flex-direction: column; gap: var(--space-1); }
+.change-notes__label {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--color-text-muted);
+}
+
+/* Color swatches (brand) */
+.swatches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-4); }
+.swatch { display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--text-sm); }
+.swatch__chip {
+  aspect-ratio: 1 / 1;
+  border: var(--line-width) solid var(--color-line);
+  background: var(--color-surface-strong);
+}
+
+/* Typography samples (brand) */
+.type-sample {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border: var(--line-width) solid var(--color-line);
+}
+.type-sample__display { font-size: var(--text-3xl); font-weight: var(--weight-bold); line-height: 1.1; }
+.type-sample__body { font-size: var(--text-base); }
+
+/* Product grid (brand collection) */
+.product-card { display: flex; flex-direction: column; gap: var(--space-3); }
+.product-card__category {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--color-text-muted);
+}
+
+/* Social post mock (brand) */
+.social-post {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--line-width) solid var(--color-line);
+}
+.social-post__meta { font-family: var(--font-label); font-size: var(--text-xs); color: var(--color-text-muted); }
+
+/* Timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  list-style: none;
+  padding: 0 0 0 var(--space-5);
+  border-left: var(--line-width) solid var(--color-line);
+}
+.timeline__item { position: relative; display: flex; flex-direction: column; gap: var(--space-1); }
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--space-5) - 6.75px);
+  top: 0.35em;
+  width: 12px; height: 12px;
+  background: var(--color-bg);
+  border: var(--line-width) solid var(--color-line);
+  transform: rotate(45deg);
+}
+.timeline__date { font-family: var(--font-label); font-size: var(--text-xs); letter-spacing: var(--tracking-caps); color: var(--color-text-muted); }
+
+/* Channel list */
+.channel-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); list-style: none; padding: 0; }
+.channel-list__item { padding: var(--space-4); border: var(--line-width) solid var(--color-line); display: flex; flex-direction: column; gap: var(--space-1); }
+
+/* Previous / next pager */
+.cs-pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--frame-gap);
+  margin-top: var(--space-9);
+}
+.cs-pager__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-5);
+  border: var(--line-width) solid var(--color-line);
+  color: var(--color-text);
+  text-decoration: none;
+}
+.cs-pager__link:hover { background: var(--color-text); color: var(--color-bg); }
+.cs-pager__link:hover .cs-pager__dir { color: inherit; }
+.cs-pager__link--next { text-align: right; }
+.cs-pager__dir {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.cs-pager__title { font-weight: var(--weight-medium); font-size: var(--text-lg); text-transform: uppercase; }
+.cs-pager__home {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding-top: var(--space-4);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   8. PLACEHOLDERS
+   Halftone-dot boxes with a centered label, to read as screenprint.
+   To swap for a real image, replace the <div class="img-placeholder ...">
+   with <img src="images/..." alt="..." class="img-cover img-cover--duotone ratio-16x9">.
+   ========================================================================== */
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--space-4);
+  background-color: var(--color-surface-strong);
+  background-image: radial-gradient(circle, var(--halftone-dot) 1px, transparent 1.6px);
+  background-size: var(--halftone-size) var(--halftone-size);
+  border: var(--border-width) solid var(--color-border);
+  color: var(--color-placeholder-text);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Real images that replace placeholders.
+   --duotone gives photos the monochrome screenprint look. */
+.img-cover { width: 100%; object-fit: cover; }
+.img-cover--duotone { filter: grayscale(1) contrast(1.15) brightness(0.95); }
+
+.ratio-16x9 { aspect-ratio: 16 / 9; }
+.ratio-21x9 { aspect-ratio: 21 / 9; }
+.ratio-3x2  { aspect-ratio: 3 / 2; }
+.ratio-4x3  { aspect-ratio: 4 / 3; }
+.ratio-1x1  { aspect-ratio: 1 / 1; }
+.ratio-4x5  { aspect-ratio: 4 / 5; }
+.ratio-3x4  { aspect-ratio: 3 / 4; }
+.ratio-9x16 { aspect-ratio: 9 / 16; }
+
+
+/* ==========================================================================
+   9. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 900px) {
+  :root { --text-5xl: 3rem; }
+  .grid--3,
+  .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quick-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quick-facts__item:nth-child(3) { border-left: 0; }
+  .quick-facts__item:nth-child(n+3) { border-top: var(--line-width) solid var(--color-line); }
+  .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .change-notes { grid-template-columns: 1fr; }
+  .contact-panel { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: var(--space-4);
+    --frame-pad: var(--space-4);
+    --text-5xl: 2.5rem;
+    --text-4xl: 2.25rem;
+    --text-3xl: 1.9375rem;
+    --text-2xl: 1.5625rem;
+  }
+  .grid--2,
+  .grid--3,
+  .grid--4,
+  .split,
+  .before-after,
+  .channel-list,
+  .cs-pager,
+  .hero-grid,
+  .cs-title,
+  .site-footer__inner,
+  .tracklist { grid-template-columns: 1fr; }
+  .hero-grid__id,
+  .cs-title__main { grid-row: auto; }
+  .hero-grid__mark,
+  .cs-title__mark { display: none; }
+  .quick-facts { grid-template-columns: 1fr; }
+  .quick-facts__item + .quick-facts__item { border-left: 0; border-top: var(--line-width) solid var(--color-line); }
+  .split { gap: var(--space-5); }
+  .split--reverse .split__media { order: 0; }
+  .cs-pager__link--next { text-align: left; }
+  .home-section,
+  .cs-section { padding-top: var(--space-8); }
+  .theme-block { padding: var(--space-4); }
+  .site-nav__list { gap: var(--space-4); }
+}
+
+
+/* ==========================================================================
+   10. UTILITY MODIFIERS
+   ========================================================================== */
+.cs-section--first { padding-top: 0; }
+.img-placeholder--narrow { max-width: 36rem; }
+.lead-statement { font-size: var(--text-xl); font-family: var(--font-serif); line-height: 1.4; }
+.bullet-list { display: flex; flex-direction: column; gap: var(--space-2); padding-left: var(--space-5); }

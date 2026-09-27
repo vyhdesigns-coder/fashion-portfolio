@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Run It: Behind the Seams — [Your Name]</title>
+  <meta name="description" content="Case study: planning, pricing, and managing a product line.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-case-study page-business">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- SITE HEADER (same on every page) -->
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <a class="site-header__name" href="index.html">
+          <span class="barcode barcode--mini barcode--v4" aria-hidden="true"><span class="barcode__bars"></span></span>
+          [Your Name]
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="index.html#section-work">Work</a></li>
+            <li><a class="site-nav__link" href="index.html#section-about">About</a></li>
+            <li><a class="site-nav__link" href="[resume.pdf]">Resume</a></li>
+            <li><a class="site-nav__link" href="index.html#section-contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <a class="back-link" href="index.html#section-work">← Back to all work</a>
+
+    <!-- ====================================================================
+         TITLE BLOCK
+         ==================================================================== -->
+    <header class="cs-title" id="section-title">
+      <!-- Title panel -->
+      <div class="frame cs-title__main">
+        <div class="frame__row frame__row--split">
+          <p class="eyebrow">Case study 03 · Merchandising &amp; operations</p>
+          <p class="eyebrow">[Month YYYY]</p>
+        </div>
+        <div class="frame__row frame__row--grow">
+          <h1>Run It: Behind the Seams</h1>
+          <p class="cs-title__subtitle">Planning, pricing, and managing a product line</p>
+        </div>
+      </div>
+      <!-- Graphic mark (decorative) -->
+      <div class="frame mark-cell cs-title__mark" aria-hidden="true">
+        <div class="mark-burst"></div>
+      </div>
+      <!-- Spec tag: barcode + project codes, like a garment hang tag -->
+      <div class="frame cs-title__code">
+        <div class="frame__row">
+          <div class="barcode barcode--v4" aria-hidden="true">
+            <div class="barcode__bars"></div>
+            <p class="barcode__code"><span>SKU CS-03</span><span>[20XX]</span></p>
+          </div>
+        </div>
+        <div class="frame__row">
+          <dl class="spec-list">
+            <div><dt>Style</dt><dd>CS-03</dd></div>
+            <div><dt>Category</dt><dd>Line plan</dd></div>
+            <div><dt>Dept.</dt><dd>Merchandising &amp; ops</dd></div>
+          </dl>
+        </div>
+      </div>
+    </header>
+
+    <!-- ====================================================================
+         1. OVERVIEW
+         A screenshot of your actual tracker/line plan up top signals
+         "this person builds systems" — the MIS edge most fashion
+         candidates don't have. List the tools in quick facts.
+         ==================================================================== -->
+    <section class="cs-section cs-section--overview cs-section--first" id="section-overview" aria-labelledby="overview-title">
+      <h2 id="overview-title" class="visually-hidden">Overview</h2>
+      <div class="img-placeholder ratio-16x9" role="img" aria-label="[Alt text: screenshot of your line plan and tracker]">
+        IMAGE: Screenshot of line plan or tracker — full view, readable at desktop width (16:9)
+      </div>
+      <div class="cs-section__body">
+        <p>[Project description: 2–3 sentences. The business problem, what you built to manage it, and what it helped you decide.]</p>
+      </div>
+      <dl class="quick-facts">
+        <div class="quick-facts__item"><dt class="quick-facts__label">Timeframe</dt><dd class="quick-facts__value">[Month YYYY – Month YYYY]</dd></div>
+        <div class="quick-facts__item"><dt class="quick-facts__label">Role</dt><dd class="quick-facts__value">[Owner, analyst, planner]</dd></div>
+        <div class="quick-facts__item"><dt class="quick-facts__label">Skills</dt><dd class="quick-facts__value">[Costing, pricing, line planning, vendor research]</dd></div>
+        <div class="quick-facts__item"><dt class="quick-facts__label">Tools</dt><dd class="quick-facts__value">[Excel / Google Sheets, Airtable, SQL, etc.]</dd></div>
+      </dl>
+    </section>
+
+    <!-- ====================================================================
+         2. THE GOAL
+         Frame the project as a business question. Recruiters for
+         merchandising and ops roles want to see you start from a decision
+         that needs to be made, not from a spreadsheet.
+         ==================================================================== -->
+    <section class="cs-section cs-section--goal" id="section-goal" aria-labelledby="goal-title">
+      <header class="cs-section__header">
+        <p class="cs-section__number">01</p>
+        <h2 id="goal-title">The goal</h2>
+      </header>
+      <div class="cs-section__body">
+        <p class="lead-statement">[The business question, e.g., "If I sold my pieces as a small line, what should I make, how many, and at what price — and would it be profitable?"]</p>
+        <p>[Why you asked it and what decisions depended on the answer.]</p>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         3. COSTING
+         Cost per item, broken into components. Costing is fundamental to
+         product development, sourcing, and merchandising roles.
+         ==================================================================== -->
+    <section class="cs-section cs-section--costing" id="section-costing" aria-labelledby="costing-title">
+      <header class="cs-section__header">
+        <p class="cs-section__number">02</p>
+        <h2 id="costing-title">Costing</h2>
+        <p class="text-muted">[One sentence on how you calculated costs — e.g., actual receipts, labor rate assumption.]</p>
+      </header>
+      <div class="table-wrap">
+        <table class="data-table" id="table-costing">
+          <caption>Cost per item</caption>
+          <thead>
+            <tr><th scope="col">Item</th><th scope="col">Materials</th><th scope="col">Hardware / trims</th><th scope="col">Labor hours</th><th scope="col">Total cost</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">[Jeans]</th><td>[$X.XX]</td><td>[$X.XX]</td><td>[X hrs]</td><td>[$X.XX]</td></tr>
+            <tr><th scope="row">[Jacket]</th><td>[$X.XX]</td><td>[$X.XX]</td><td>[X hrs]</td><td>[$X.XX]</td></tr>
+            <tr><th scope="row">[Hoodie]</th><td>[$X.XX]</td><td>[$X.XX]</td><td>[X hrs]</td><td>[$X.XX]</td></tr>
+            <tr><th scope="row">[Cap]</th><td>[$X.XX]</td><td>[$X.XX]</td><td>[X hrs]</td><td>[$X.XX]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note-box">[Assumption note, e.g., "Labor valued at $X/hr. Materials priced at small-quantity retail; bulk pricing would lower cost ~X%."]</p>
+    </section>
+
+    <!-- ====================================================================
+         4. PRICING AND MARGINS
+         Retail price vs. cost vs. competitors, with margin %. Shows you
+         understand how price, positioning, and profitability connect.
+         ==================================================================== -->
+    <section class="cs-section cs-section--pricing" id="section-pricing" aria-labelledby="pricing-title">
+      <header class="cs-section__header">
+        <p class="cs-section__number">03</p>
+        <h2 id="pricing-title">Pricing and margins</h2>
+      </header>
+      <div class="table-wrap">
+        <table class="data-table" id="table-pricing">
+          <caption>Pricing and margin by item</caption>
+          <thead>
+            <tr><th scope="col">Item</th><th scope="col">Cost</th><th scope="col">Competitor price range</th><th scope="col">Retail price</th><th scope="col">Margin %</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">[Jeans]</th><td>[$X.XX]</td><td>[$X–$X]</td><td>[$X]</td><td>[X%]</td></tr>
+            <tr><th scope="row">[Jacket]</th><td>[$X.XX]</td><td>[$X–$X]</td><td>[$X]</td><td>[X%]</td></tr>
+            <tr><th scope="row">[Hoodie]</th><td>[$X.XX]</td><td>[$X–$X]</td><td>[$X]</td><td>[X%]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cs-section__body">
+        <h3 class="subheading">Trade-offs</h3>
+        <p>[Short note on the trade-offs — e.g., "Jeans have the lowest margin because labor is high, but they're the hero piece, so I priced them to compete and made margin back on hoodies and caps."]</p>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         5. LINE PLAN
+         What to make, in what colors/sizes, and how many. This is the
+         literal day-to-day of an assistant merchandiser.
+         ==================================================================== -->
+    <section class="cs-section cs-section--line-plan" id="section-line-plan" aria-labelledby="line-plan-title">
+      <header class="cs-section__header">
+        <p class="cs-section__number">04</p>
+        <h2 id="line-plan-title">Line plan</h2>
+      </header>
+      <div class="table-wrap">
+        <table class="data-table" id="table-line-plan">
+          <caption>Line plan — [Season / drop name]</caption>
+          <thead>
+            <tr><th scope="col">Item</th><th scope="col">Core or limited drop</th><th scope="col">Colors</th><th scope="col">Sizes</th><th scope="col">Planned units</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">[Jeans]</th><td>[Core]</td><td>[Raw indigo, black]</td><td>[28–36]</td><td>[X]</td></tr>
+            <tr><th scope="row">[Jacket]</th><td>[Limited drop]</td><td>[Color]</td><td>[S–XL]</td><td>[X]</td></tr>
+            <tr><th scope="row">[Cap]</th><td>[Core]</td><td>[Color, color]</td><td>[OS]</td><td>[X]</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><th scope="row">Total</th><td></td><td></td><td></td><td>[X]</td></tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="cs-section__body">
+        <h3 class="subheading">Reasoning</h3>
+        <p>[Why this mix — e.g., which items are core vs. limited, how you picked colors and size ranges, and how you set unit quantities (preorders, survey data, capacity).]</p>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         6. PRODUCTION AND VENDORS
+         What you'd make in-house vs. outsource, and what you'd ask
+         suppliers. Directly relevant to sourcing and vendor roles.
+         ==================================================================== -->
+    <section class="cs-section cs-section--production" id="section-production" aria-labelledby="production-title">
+      <header class="cs-section__header">
+        <p class="cs-section__number">05</p>
+        <h2 id="production-title">Production and vendors</h2>
+      </header>
+      <div class="grid grid--2">
+        <div class="insight-callout">
+          <h3 class="insight-callout__title">In-house</h3>
+          <ul class="bullet-list">
+            <li>[Item or step you'd keep in-house]</li>
+            <li>[Why — e.g., quality control, low volume]</li>
+          </ul>
+        </div>
+        <div class="insight-callout">
+          <h3 class="insight-callout__title">Outsourced</h3>
+          <ul class="bullet-list">
+            <li>[Item or step you'd outsource — e.g., cap embroidery]</li>
+            <li>[Why — e.g., equipment cost, speed at volume]</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cs-section__body">
+        <h3 class="subheading">Questions for suppliers</h3>
+        <ul>
+          <li><strong>MOQs:</strong> [What's the minimum order quantity for X? Can it be split across colors?]</li>
+          <li><strong>Lead times:</strong> [How long from sample approval to delivery?]</li>
+          <li><strong>Unit cost:</strong> [How does unit cost change at X vs. X units?]</li>
+          <li><strong>[Other]:</strong> [Sampling cost, payment terms, quality checks, etc.]</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         7. THE SYSTEM I BUILT
+         Screenshots + how the tracker is structured and what decisions it
+         supports. Your clearest MIS differentiator — show the logic.
+         ==================================================================== -->
+    <section class="cs-section cs-section--system" id="section-system" aria-labelledby="system-title">
+      <header class="cs-section__header">
+        <p class="cs-section__number">06</p>
+        <h2 id="system-title">The system I built</h2>
+      </header>
+      <div class="split">
+        <div class="split__media">
+          <div class="img-placeholder ratio-4x3" role="img" aria-label="[Alt text: tracker tab showing costing inputs]">IMAGE: Screenshot — costing / inputs tab (4:3)</div>
+        </div>
+        <div class="split__text cs-section__body">
+          <h3 class="subheading">Structure</h3>
+          <p>[How it's organized — tabs/tables, how they link, where the formulas live.]</p>
+        </div>
+      </div>
+      <div class="split split--reverse">
+        <div class="split__media">
+          <div class="img-placeholder ratio-4x3" role="img" aria-label="[Alt text: tracker tab showing inventory or production status]">IMAGE: Screenshot — production / inventory tracker (4:3)</div>
+        </div>
+        <div class="split__text cs-section__body">
+          <h3 class="subheading">What it tracks</h3>
+          <p>[Materials, costs, units planned vs. made, orders, etc.]</p>
+        </div>
+      </div>
+      <div class="split">
+        <div class="split__media">
+          <div class="img-placeholder ratio-4x3" role="img" aria-label="[Alt text: dashboard or summary view]">IMAGE: Screenshot — dashboard / summary view (4:3)</div>
+        </div>
+        <div class="split__text cs-section__body">
+          <h3 class="subheading">Decisions it supports</h3>
+          <p>[e.g., "What to reorder, which item to cut, how price changes affect margin."]</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         8. RESULTS AND INSIGHTS
+         Two to four clear takeaways. Recruiters skim these first.
+         ==================================================================== -->
+    <section class="cs-section cs-section--results" id="section-results" aria-labelledby="results-title">
+      <header class="cs-section__header">
+        <p class="cs-section__number">07</p>
+        <h2 id="results-title">Results and insights</h2>
+      </header>
+      <div class="grid grid--3">
+        <div class="insight-callout">
+          <p class="metric-callout__value">[X%]</p>
+          <h3 class="insight-callout__title">[Insight 1 headline]</h3>
+          <p class="text-muted">[e.g., "Caps carry the highest margin — worth leading with for cash flow."]</p>
+        </div>
+        <div class="insight-callout">
+          <p class="metric-callout__value">[$X]</p>
+          <h3 class="insight-callout__title">[Insight 2 headline]</h3>
+          <p class="text-muted">[e.g., "Labor is X% of jeans cost — the biggest lever if outsourced."]</p>
+        </div>
+        <div class="insight-callout">
+          <p class="metric-callout__value">[X]</p>
+          <h3 class="insight-callout__title">[Insight 3 headline]</h3>
+          <p class="text-muted">[e.g., "Break-even at X units across the line."]</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         9. REFLECTION AND NEXT STEPS
+         ==================================================================== -->
+    <section class="cs-section cs-section--reflection" id="section-reflection" aria-labelledby="reflection-title">
+      <header class="cs-section__header">
+        <p class="cs-section__number">08</p>
+        <h2 id="reflection-title">Reflection and next steps</h2>
+      </header>
+      <div class="cs-section__body">
+        <p>[What running the numbers taught you about the business of fashion — and how it'll shape your own brand someday.]</p>
+        <h3 class="subheading">If I did it again</h3>
+        <ul>
+          <li>[Thing you'd do differently #1]</li>
+          <li>[Thing you'd do differently #2]</li>
+        </ul>
+        <h3 class="subheading">Next</h3>
+        <ul>
+          <li>[Next step #1, e.g., "Request real quotes from 2 manufacturers"]</li>
+          <li>[Next step #2, e.g., "Move the tracker into a database"]</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PREVIOUS / NEXT CASE STUDY -->
+    <nav class="cs-pager" aria-label="Case studies">
+      <a class="cs-pager__link cs-pager__link--prev" href="brand.html">
+        <span class="cs-pager__dir">← Previous</span>
+        <span class="cs-pager__title">Brand It: Building [Brand Name]</span>
+      </a>
+      <a class="cs-pager__link cs-pager__link--next" href="denim.html">
+        <span class="cs-pager__dir">Next →</span>
+        <span class="cs-pager__title">Make It: Built to Fit</span>
+      </a>
+      <a class="cs-pager__home" href="index.html">Back to home</a>
+    </nav>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__meta">
+          <p>© [Year] [Your Name]</p>
+          <ul class="site-footer__links">
+            <li><a href="mailto:[you@email.com]">Email</a></li>
+            <li><a href="[https://linkedin.com/in/your-handle]">LinkedIn</a></li>
+            <li><a href="[https://instagram.com/your-handle]">Instagram</a></li>
+          </ul>
+        </div>
+        <div class="barcode barcode--v1" aria-hidden="true">
+          <div class="barcode__bars"></div>
+          <p class="barcode__code"><span>[Your Name]</span><span>[20XX]</span></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
